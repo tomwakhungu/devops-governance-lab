@@ -13,14 +13,10 @@ app.get('/health', (req, res) => {
 });
 
 // API endpoints
-app.get('/api/users', (req, res) => {
-  res.json({
-    users: [
-      { id: 1, name: 'Tom Wakhungu', role: 'Team Lead/DevOps' },
-      { id: 2, name: 'Wakhungu Nalianya', role: 'Backend Developer' },
-      { id: 3, name: 'Tom Nalianya', role: 'Frontend Developer' }
-    ]
-  });
+res.json({ 
+  status: 'healthy', 
+  version: '1.0.0', 
+  timestamp: new Date().toISOString() 
 });
 
 app.post('/api/users', (req, res) => {
