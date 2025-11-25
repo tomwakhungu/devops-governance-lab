@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>🚀 DevOps Governance Lab</h1>
+      <h1>🚀 DevOps Governance Lab v1</h1>
       <p className="subtitle">GitHub Governance + Docker + CI/CD + Kubernetes</p>
 
       <div className="card">
