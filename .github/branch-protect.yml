@@ -1,0 +1,28 @@
+name: Enforce Branch Protection
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  validate-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check source branch
+        run: |
+          SOURCE_BRANCH="${{ github.head_ref }}"
+          TARGET_BRANCH="${{ github.base_ref }}"
+          
+          echo "PR from $SOURCE_BRANCH to $TARGET_BRANCH"
+          
+          if [ "$TARGET_BRANCH" = "main" ] && [ "$SOURCE_BRANCH" != "staging" ]; then
+            echo "❌ Main only accepts PRs from staging"
+            exit 1
+          fi
+          
+          if [ "$TARGET_BRANCH" = "staging" ] && [ "$SOURCE_BRANCH" != "develop" ]; then
+            echo "❌ Staging only accepts PRs from develop"
+            exit 1
+          fi
+          
+          echo "✅ Branch validation passed"
